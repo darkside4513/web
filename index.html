@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-
   <style>
          @charset "utf-8";
-         /*@media screen and (max-width: 1020px) {*/
          #container, #header, #content, #footer {
          float: none;
          width: auto;
          }
          p { font-size: 2em; }
+        /*Diseño del encabezado*/
          #header {
          background-color: #7daf18;
          padding:5%;
          border-bottom:1em solid #2d2d2d;
          }
+         /*Diseño  separacion de Titulo*/
          #title {
          padding:5%;
          }
+         /*Diseño Titulo 1*/
          .title-orange {
          font-family:Arial, Helvetica, sans-serif;
          font-size:3em;
@@ -25,52 +26,54 @@
          display:block;
          font-weight:bold;
          }
+         /*Diseño Titulo 2*/
          .title-green {
          font-family:Arial, Helvetica, sans-serif;
          font-size:4em;
          color:#4b8101;
          display:block;
          }
+         /*Diseño general de la pagina*/
          #content {
          padding:0 5% 5% 5%;
          font-family:Arial, Helvetica, sans-serif;
          font-size:3em;
          }
+         /*Diseño General de la tabla de informacion*/
          .data_table td {
          padding:0.8em;
          border-bottom:1px solid #cfcfcf;
          }
+         /*Diseño del lado derecho de la tabla de informacion*/
          .data_table td.left-col {
          background-color:#f1f1f1;
          color:#000;
          width:38%;
          }
+         /*Diseño del lado derecho de la tabla de informacion*/
          .data_table td.right-col {
          background-color:#fff;
          color:#676767;
          width:58%;
          }
+        /*Pie de pagina*/
          #footer {
          padding:5%;
          font-family:Arial, Helvetica, sans-serif;
          font-size:2.5em;
          background-color:#cfcfcf;
          color:#3a3a3a;
+         } 
+         /* Ocultar enlaces a las páginas */
+         .hidden-link {
+         text-indent: -9999px; /* Mueve el texto fuera del área visible */
+         overflow: hidden;     /* Oculta contenido desbordado */
+         position: absolute;   /* Hace el enlace invisible */
+         width: 1px;           /* Tamaño mínimo visible */
+         height: 1px;
          }
-         /*}*/
   </style>
-  <title></title>
-  <link href="styles.css" rel="stylesheet" type="text/css">
-  <script>
-  NS_CSM_td=353293451;NS_CSM_pd=275116664;NS_CSM_u="/clm10";NS_CSM_col="";
-  </script>
-  <script type="text/javascript">
-  function sendTimingInfoInit(){setTimeout(sendTimingInfo,0)}function sendTimingInfo(){var wp=window.performance;if(wp){var c1,c2,t;c1=wp.timing;if(c1){var cm={};cm.ns=c1.navigationStart;if((t=c1.unloadEventStart)>0)cm.us=t;if((t=c1.unloadEventEnd)>0)cm.ue=t;if((t=c1.redirectStart)>0)cm.rs=t;if((t=c1.redirectEnd)>0)cm.re=t;cm.fs=c1.fetchStart;cm.dls=c1.domainLookupStart;cm.dle=c1.domainLookupEnd;cm.cs=c1.connectStart;cm.ce=c1.connectEnd;if((t=c1.secureConnectionStart)>0)cm.scs=t;cm.rqs=c1.requestStart;cm.rss=c1.responseStart;cm.rse=c1.responseEnd;cm.dl=c1.domLoading;cm.di=c1.domInteractive;cm.dcls=c1.domContentLoadedEventStart;cm.dcle=c1.domContentLoadedEventEnd;cm.dc=c1.domComplete;if((t=c1.loadEventStart)>0)cm.ls=t;if((t=c1.loadEventEnd)>0)cm.le=t;cm.tid=NS_CSM_td;cm.pid=NS_CSM_pd;cm.ac=NS_CSM_col;var xhttp=new XMLHttpRequest();if(xhttp){var JSON=JSON||{};JSON.stringify=JSON.stringify||function(ob){var t=typeof(ob);if(t!="object"||ob===null){if(t=="string")ob='"'+ob+'"';return String(ob);}else{var n,v,json=[],arr=(ob&&ob.constructor==Array);for(n in ob){v=ob[n];t=typeof(v);if(t=="string")v='"'+v+'"';else if(t=="object"&&v!==null)v=JSON.stringify(v);json.push((arr?"":'"'+n+'":')+String(v));}return(arr?"[":"{")+String(json)+(arr?"]":"}");}};xhttp.open("POST",NS_CSM_u,true);xhttp.send(JSON.stringify(cm));}}}}if(window.addEventListener)window.addEventListener("load",sendTimingInfoInit,false);else if(window.attachEvent)window.attachEvent("onload",sendTimingInfoInit);else window.onload=sendTimingInfoInit;
-  </script>
-  <style>
-  .safe-deal__scam__page .anti-scam-modal{font-family:"Roboto,sans-serif,arial",sans-serif !important;color:#333;z-index:2147483647}.safe-deal__scam__page .anti-scam-modal__content{background-color:#fff;border-radius:4px;box-shadow:0 12px 24px rgba(0,0,0,.25);padding:24px;max-width:90%;margin:100px auto;position:relative}@media(min-width: 600px){.safe-deal__scam__page .anti-scam-modal__content{max-width:80%}}@media(min-width: 900px){.safe-deal__scam__page .anti-scam-modal__content{max-width:900px}}.safe-deal__scam__page .anti-scam-modal__title{font-size:18px;line-height:22px;display:flex;align-items:center;gap:10px;font-weight:bold;margin-bottom:1rem;color:#333;border-color:rgba(203,3,37,.4)}.safe-deal__scam__page .anti-scam-modal__title__image{display:block;margin-bottom:1rem;min-width:40px}.safe-deal__scam__page .anti-scam-modal__divider{border-color:#ccc;margin:1.5rem 0}.safe-deal__scam__page .anti-scam-modal__actions{display:flex;gap:10px}.safe-deal__scam__page .anti-scam-modal__actions:dir(ltr){flex-direction:row-reverse}.safe-deal__scam__page .anti-scam-modal__actions:dir(rtl){flex-direction:row}.safe-deal__scam__page .anti-scam-modal__button{flex-grow:1;border-radius:4px;padding:10px 20px;font-size:16px;transition:background-color .3s ease-in-out;cursor:pointer}.safe-deal__scam__page .anti-scam-modal__button--leave{background-color:#f44336;color:#fff}.safe-deal__scam__page .anti-scam-modal__button--leave:hover{background-color:rgb(242.4537735849,40.5735849057,25.7462264151)}.safe-deal__scam__page .anti-scam-modal__button--stay{background-color:#4caf50;color:#fff;color:"#70757a"}.safe-deal__scam__page .anti-scam-modal__button--stay:hover{background-color:rgb(68.4,157.5,72)}
-  </style>
-  <script src="chrome-extension://mooikfkahbdckldjjndioackbalphokd/assets/prompt.js"></script>
+  <title>Sistema Datamatrix</title>
 </head>
 <body>
   <form method="post" action="cppp.aspx?dm=3lismwp" id="form1" name="form1">
@@ -81,52 +84,121 @@
           <span class="title-orange">Sistema Datamatrix</span> <span class="title-green">Validación de Documentos</span>
         </div>
         <div id="content">
+          <!--Informacion Modificable -->
           <table width="100%" border="0" cellpadding="5" cellspacing="0" class="data_table">
             <tbody>
               <tr>
                 <td class="left-col"><span id="lblECodigo">Código</span></td>
-                <td class="right-col"><span id="lblCodigo">3mwplis</span></td>
+                <td class="right-col"><span id="lblCodigo">3mwplis</span></td> <!--Informacion Modificable -->
               </tr>
               <tr>
                 <td class="left-col"><span id="lblEPlaca">Placa</span></td>
-                <td class="right-col"><span id="lblPlaca">PP389613</span></td>
+                <td class="right-col"><span id="lblPlaca">PP389613</span></td><!--Informacion Modificable -->
               </tr>
               <tr>
                 <td class="left-col"><span id="lblETipoVehiculo">Tipo de Vehículo</span></td>
-                <td class="right-col"><span id="lblTipoVehiculo">JEEP</span></td>
+                <td class="right-col"><span id="lblTipoVehiculo">JEEP</span></td><!--Informacion Modificable -->
               </tr>
               <tr>
                 <td class="left-col"><span id="lblEMarca">Marca</span></td>
-                <td class="right-col"><span id="lblMarca">INFINITI</span></td>
+                <td class="right-col"><span id="lblMarca">INFINITI</span></td><!--Informacion Modificable -->
               </tr>
               <tr>
                 <td class="left-col"><span id="lblEModelo">Modelo</span></td>
-                <td class="right-col"><span id="lblModelo">QX60</span></td>
+                <td class="right-col"><span id="lblModelo">QX60</span></td><!--Informacion Modificable -->
               </tr>
               <tr>
                 <td class="left-col"><span id="lblEColor">Color</span></td>
-                <td class="right-col"><span id="lblColor">NEGRO</span></td>
+                <td class="right-col"><span id="lblColor">NEGRO</span></td><!--Informacion Modificable -->
               </tr>
               <tr>
                 <td class="left-col"><span id="lblEYear">Año</span></td>
-                <td class="right-col"><span id="lblYear">2015</span></td>
+                <td class="right-col"><span id="lblYear">2015</span></td><!--Informacion Modificable -->
               </tr>
               <tr>
                 <td class="left-col"><span id="lblEChasis">Chasis</span></td>
-                <td class="right-col"><span id="lblChasis">1FTER4FH3KLA04237</span></td>
+                <td class="right-col"><span id="lblChasis">1FTER4FH3KLA04237</span></td><!--Informacion Modificable -->
               </tr>
               <tr>
                 <td class="left-col"><span id="LblEFechaexpiracion">Fecha Expiración</span></td>
-                <td class="right-col"><span id="LblFechaexpiracion">15/02/2025</span></td>
+                <td class="right-col"><span id="LblFechaexpiracion">15/02/2025</span></td><!--Informacion Modificable -->
               </tr>
             </tbody>
           </table>
+          
+          <!-- Enlaces ocultos a las páginas -->
+          <a href="PPX0001.html" class="hidden-link">PPX0001</a>
+          <a href="PPX0002.html" class="hidden-link">PPX0002</a>
+          <a href="PPX0003.html" class="hidden-link">PPX0003</a>
+          <a href="PPX0004.html" class="hidden-link">PPX0004</a>
+          <a href="PPX0005.html" class="hidden-link">PPX0005</a>
+          <a href="PPX0006.html" class="hidden-link">PPX0006</a>
+          <a href="PPX0007.html" class="hidden-link">PPX0007</a>
+          <a href="PPX0008.html" class="hidden-link">PPX0008</a>
+          <a href="PPX0009.html" class="hidden-link">PPX0009</a>
+          <a href="PPX0010.html" class="hidden-link">PPX0010</a>
+          <a href="PPX0011.html" class="hidden-link">PPX0011</a>
+          <a href="PPX0012.html" class="hidden-link">PPX0012</a>
+          <a href="PPX0013.html" class="hidden-link">PPX0013</a>
+          <a href="PPX0014.html" class="hidden-link">PPX0014</a>
+          <a href="PPX0015.html" class="hidden-link">PPX0015</a>
+          <a href="PPX0016.html" class="hidden-link">PPX0016</a>
+          <a href="PPX0017.html" class="hidden-link">PPX0017</a>
+          <a href="PPX0018.html" class="hidden-link">PPX0018</a>
+          <a href="PPX0019.html" class="hidden-link">PPX0019</a>
+          <a href="PPX0020.html" class="hidden-link">PPX0020</a>
+          <a href="PPX0021.html" class="hidden-link">PPX0021</a>
+          <a href="PPX0022.html" class="hidden-link">PPX0022</a>
+          <a href="PPX0023.html" class="hidden-link">PPX0023</a>
+          <a href="PPX0024.html" class="hidden-link">PPX0024</a>
+          <a href="PPX0025.html" class="hidden-link">PPX0025</a>
+          <a href="PPX0026.html" class="hidden-link">PPX0026</a>
+          <a href="PPX0027.html" class="hidden-link">PPX0027</a>
+          <a href="PPX0028.html" class="hidden-link">PPX0028</a>
+          <a href="PPX0029.html" class="hidden-link">PPX0029</a>
+          <a href="PPX0030.html" class="hidden-link">PPX0030</a>
+          <a href="PPX0031.html" class="hidden-link">PPX0031</a>
+          <a href="PPX0032.html" class="hidden-link">PPX0032</a>
+          <a href="PPX0033.html" class="hidden-link">PPX0033</a>
+          <a href="PPX0034.html" class="hidden-link">PPX0034</a>
+		      <a href="PPX0035.html" class="hidden-link">PPX0035</a>
+          <a href="PPX0036.html" class="hidden-link">PPX0036</a>
+		      <a href="PPX0037.html" class="hidden-link">PPX0037</a>
+          <a href="PPX0038.html" class="hidden-link">PPX0038</a>
+		      <a href="PPX0039.html" class="hidden-link">PPX0039</a>
+          <a href="PPX0040.html" class="hidden-link">PPX0040</a>
+		      <a href="PPX0041.html" class="hidden-link">PPX0041</a>
+          <a href="PPX0042.html" class="hidden-link">PPX0042</a>
+          <a href="PPX0043.html" class="hidden-link">PPX0043</a>
+          <a href="PPX0044.html" class="hidden-link">PPX0044</a>
+          <a href="PPX0045.html" class="hidden-link">PPX0045</a>
+          <a href="PPX0046.html" class="hidden-link">PPX0046</a>
+          <a href="PPX0047.html" class="hidden-link">PPX0047</a>
+          <a href="PPX0048.html" class="hidden-link">PPX0048</a>
+          <a href="PPX0049.html" class="hidden-link">PPX0049</a>
+          <a href="PPX0050.html" class="hidden-link">PPX0050</a>
+		      <a href="PPX0051.html" class="hidden-link">PPX0051</a>
+          <a href="PPX0052.html" class="hidden-link">PPX0052</a>
+		      <a href="PPX0053.html" class="hidden-link">PPX0053</a>
+          <a href="PPX0054.html" class="hidden-link">PPX0054</a>
+		      <a href="PPX0055.html" class="hidden-link">PPX0055</a>
+          <a href="PPX0056.html" class="hidden-link">PPX0056</a>
+		      <a href="PPX0057.html" class="hidden-link">PPX0057</a>
+          <a href="PPX0058.html" class="hidden-link">PPX0058</a>
+          <a href="PPX0059.html" class="hidden-link">PPX0059</a>
+          <a href="PPX0060.html" class="hidden-link">PPX0060</a>
+
+
+
         </div>
         <div id="footer">
-          Direccion General de Impuestos Internos.
+          Dirección General de Impuestos Internos.
         </div>
       </div>
     </div>
   </form>
+  <!-- este escript redirecciona a otro lugar que no es la pagina principal-->
+  <!--Este código se asegurará de que solo se realice la redirección si el usuario está en la página principal ("/"). Puedes copiar y pegar el bloque de script dentro de tu archivo HTML existente-->
+  <script> if (window.location.pathname === '/') { window.location.href = "https://dgii.gov.do/Paginas/default.aspx"; }</script>
 </body>
 </html>
