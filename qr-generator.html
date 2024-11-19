@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Códigos QR</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script> <!-- Biblioteca para generar QR -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        #qr-code {
+            margin-top: 20px;
+        }
+        select, input[type="text"], button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 1em;
+        }
+        #links {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generador de Códigos QR</h1>
+    <p>Selecciona un enlace de tu web o ingresa uno personalizado:</p>
+    
+    <!-- Dropdown con los enlaces de tu web -->
+    <div id="links">
+        <label for="web-links">Seleccionar página:</label>
+        <select id="web-links">
+            <option value="index.html">Página principal</option>
+            <option value="PPX0001.html">PPX0001</option>
+            <option value="PPX0002.html">PPX0002</option>
+            <option value="PPX0003.html">PPX0003</option>
+            <option value="PPX0004.html">PPX0004</option>
+            <option value="PPX0005.html">PPX0005</option>
+        </select>
+    </div>
+
+    <!-- Campo para ingresar un enlace personalizado -->
+    <p>O ingresa un enlace personalizado:</p>
+    <input type="text" id="custom-url" placeholder="https://ejemplo.com" style="width: 60%;">
+
+    <!-- Botón para generar el código QR -->
+    <button onclick="generateQRCode()">Generar Código QR</button>
+
+    <!-- Contenedor para el código QR generado -->
+    <div id="qr-code"></div>
+
+    <script>
+        function generateQRCode() {
+            const selectedLink = document.getElementById("web-links").value;
+            const customUrl = document.getElementById("custom-url").value;
+            const qrCodeContainer = document.getElementById("qr-code");
+
+            // Limpia cualquier QR generado previamente
+            qrCodeContainer.innerHTML = "";
+
+            // Determina el enlace a usar
+            const urlToEncode = customUrl.trim() !== "" ? customUrl.trim() : selectedLink;
+
+            // Generar el código QR
+            if (urlToEncode) {
+                QRCode.toCanvas(urlToEncode, { width: 300 }, function (error, canvas) {
+                    if (error) {
+                        alert("Error al generar el código QR: " + error);
+                        return;
+                    }
+                    qrCodeContainer.appendChild(canvas);
+                });
+            } else {
+                alert("Por favor, selecciona o ingresa un enlace válido.");
+            }
+        }
+    </script>
+</body>
+</html>
