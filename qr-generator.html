@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de Códigos QR</title>
-    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script> <!-- Biblioteca QR -->
+    <title>Generador de Códigos QR Avanzado</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,22 +17,22 @@
         #qr-code {
             margin-top: 20px;
         }
-        select, input[type="text"], input[type="color"], button {
+        select, input[type="text"], input[type="number"], input[type="color"], textarea, button {
             margin: 10px;
             padding: 10px;
             font-size: 1em;
         }
-        #links {
-            margin: 20px 0;
+        textarea {
+            width: 80%;
         }
-        #colors {
+        #links, #colors, #bulk-section, #download-buttons {
             margin: 20px 0;
         }
     </style>
 </head>
 <body>
-    <h1>Generador de Códigos QR</h1>
-    <p>Selecciona un enlace de tu web o ingresa uno personalizado:</p>
+    <h1>Generador de Códigos QR Avanzado</h1>
+    <p>Selecciona un enlace de tu web, personaliza el QR o genera múltiples códigos en lote.</p>
     
     <!-- Dropdown con los enlaces de tu web -->
     <div id="links">
@@ -59,12 +59,43 @@
         <input type="color" id="background-color" value="#ffffff">
     </div>
 
-    <!-- Botón para generar el código QR -->
+    <!-- Ajuste de tamaño -->
+    <label for="qr-size">Tamaño del QR:</label>
+    <input type="number" id="qr-size" value="300" min="100" max="1000" step="50"> px
+
+    <!-- Temas -->
+    <div id="themes">
+        <label for="qr-theme">Seleccionar tema:</label>
+        <select id="qr-theme" onchange="applyTheme()">
+            <option value="classic">Clásico</option>
+            <option value="vibrant">Vibrante</option>
+            <option value="minimal">Minimalista</option>
+        </select>
+    </div>
+
+    <!-- Subir logo -->
+    <div id="logo-upload">
+        <label for="upload-logo">Subir logo (opcional):</label>
+        <input type="file" id="upload-logo" accept="image/*">
+    </div>
+
+    <!-- Botones de acción -->
     <button onclick="generateQRCode()">Generar Código QR</button>
-    <button onclick="downloadQRCode()">Descargar QR</button>
+    <div id="download-buttons">
+        <button onclick="downloadQRCode('png')">Descargar PNG</button>
+        <button onclick="downloadQRCode('jpg')">Descargar JPG</button>
+        <button onclick="downloadQRCode('svg')">Descargar SVG</button>
+    </div>
 
     <!-- Contenedor para el código QR generado -->
     <div id="qr-code"></div>
+
+    <!-- Generar en lote -->
+    <div id="bulk-section">
+        <h2>Generar códigos QR en lote</h2>
+        <textarea id="bulk-links" placeholder="Ingresa una lista de enlaces separados por línea" rows="5"></textarea>
+        <button onclick="generateBulkQR()">Generar QR en Lote</button>
+    </div>
 
     <script>
         let canvas; // Variable global para almacenar el QR generado
@@ -73,6 +104,7 @@
             const selectedLink = document.getElementById("web-links").value;
             const customUrl = document.getElementById("custom-url").value;
             const qrCodeContainer = document.getElementById("qr-code");
+            const size = parseInt(document.getElementById("qr-size").value) || 300;
 
             // Colores personalizados
             const foregroundColor = document.getElementById("foreground-color").value;
@@ -87,33 +119,101 @@
             // Generar el código QR
             if (urlToEncode) {
                 QRCode.toCanvas(urlToEncode, {
-                    width: 300,
+                    width: size,
                     color: {
-                        dark: foregroundColor, // Color del patrón
-                        light: backgroundColor // Color de fondo
+                        dark: foregroundColor,
+                        light: backgroundColor
                     }
                 }, function (error, generatedCanvas) {
                     if (error) {
                         alert("Error al generar el código QR: " + error);
                         return;
                     }
-                    canvas = generatedCanvas; // Guarda el canvas globalmente para descargar
-                    qrCodeContainer.appendChild(canvas);
+                    canvas = generatedCanvas;
+
+                    // Agrega el logo si se ha subido uno
+                    const logoFile = document.getElementById("upload-logo").files[0];
+                    if (logoFile) {
+                        const ctx = canvas.getContext("2d");
+                        const img = new Image();
+                        img.onload = function () {
+                            const logoSize = size * 0.2;
+                            const x = (canvas.width - logoSize) / 2;
+                            const y = (canvas.height - logoSize) / 2;
+                            ctx.drawImage(img, x, y, logoSize, logoSize);
+                            qrCodeContainer.appendChild(canvas);
+                        };
+                        img.src = URL.createObjectURL(logoFile);
+                    } else {
+                        qrCodeContainer.appendChild(canvas);
+                    }
                 });
             } else {
                 alert("Por favor, selecciona o ingresa un enlace válido.");
             }
         }
 
-        function downloadQRCode() {
+        function downloadQRCode(format) {
             if (!canvas) {
                 alert("Primero genera un código QR.");
                 return;
             }
             const link = document.createElement("a");
-            link.download = "codigo-qr.png"; // Nombre del archivo descargado
-            link.href = canvas.toDataURL(); // Convierte el canvas a imagen
+            if (format === 'png') {
+                link.download = "codigo-qr.png";
+                link.href = canvas.toDataURL("image/png");
+            } else if (format === 'jpg') {
+                link.download = "codigo-qr.jpg";
+                link.href = canvas.toDataURL("image/jpeg");
+            } else if (format === 'svg') {
+                QRCode.toString(document.getElementById("custom-url").value || document.getElementById("web-links").value, {
+                    type: 'svg'
+                }, (err, string) => {
+                    if (err) {
+                        alert("Error generando SVG.");
+                        return;
+                    }
+                    const blob = new Blob([string], { type: 'image/svg+xml' });
+                    link.download = "codigo-qr.svg";
+                    link.href = URL.createObjectURL(blob);
+                    link.click();
+                });
+                return;
+            }
             link.click();
+        }
+
+        function applyTheme() {
+            const theme = document.getElementById("qr-theme").value;
+            if (theme === "classic") {
+                document.getElementById("foreground-color").value = "#000000";
+                document.getElementById("background-color").value = "#ffffff";
+            } else if (theme === "vibrant") {
+                document.getElementById("foreground-color").value = "#ff5733";
+                document.getElementById("background-color").value = "#ffe933";
+            } else if (theme === "minimal") {
+                document.getElementById("foreground-color").value = "#4CAF50";
+                document.getElementById("background-color").value = "#e8f5e9";
+            }
+        }
+
+        function generateBulkQR() {
+            const links = document.getElementById("bulk-links").value.split("\n").filter(link => link.trim() !== "");
+            const qrCodeContainer = document.getElementById("qr-code");
+            qrCodeContainer.innerHTML = ""; // Limpia el contenedor
+
+            links.forEach((link, index) => {
+                QRCode.toCanvas(link.trim(), { width: 200 }, function (error, generatedCanvas) {
+                    if (error) {
+                        console.error("Error generando QR para: " + link);
+                        return;
+                    }
+                    const qrLabel = document.createElement("p");
+                    qrLabel.innerText = `Código QR ${index + 1}: ${link}`;
+                    qrCodeContainer.appendChild(qrLabel);
+                    qrCodeContainer.appendChild(generatedCanvas);
+                });
+            });
         }
     </script>
 </body>
