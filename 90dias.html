@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Fecha</title>
+    <script>
+        function calcularFecha() {
+            // Obtener la fecha seleccionada
+            const fechaInicial = new Date(document.getElementById("fecha").value);
+
+            // Validar que se haya seleccionado una fecha
+            if (isNaN(fechaInicial.getTime())) {
+                alert("Por favor, selecciona una fecha válida.");
+                return;
+            }
+
+            // Calcular la fecha 90 días después
+            const fechaResultado = new Date(fechaInicial);
+            fechaResultado.setDate(fechaResultado.getDate() + 90);
+
+            // Mostrar el resultado
+            document.getElementById("resultado").textContent =
+                `La fecha 90 días después es: ${fechaResultado.toLocaleDateString("es-ES")}`;
+        }
+    </script>
+</head>
+<body>
+    <h1>Calculadora de Fecha 90 Días Después</h1>
+    <label for="fecha">Selecciona una fecha:</label>
+    <input type="date" id="fecha">
+    <button onclick="calcularFecha()">Calcular</button>
+    <p id="resultado" style="font-weight: bold;"></p>
+</body>
+</html>
