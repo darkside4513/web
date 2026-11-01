@@ -13,15 +13,7 @@
     const elStatusText = document.getElementById('status-text');
     const elYear = document.getElementById('current-year');
 
-    // Elementos de la barra demo (opcional para pruebas/evaluación)
-    const demoToolbar = document.getElementById('demo-toolbar');
-    const demoBubble = document.getElementById('demo-bubble');
-    const btnSetValid = document.getElementById('btn-set-valid');
-    const btnSetExpired = document.getElementById('btn-set-expired');
-    const inputFecha = document.getElementById('input-fecha');
-    const btnCloseDemo = document.getElementById('btn-close-demo');
-
-    // Configuración actual
+    // Configuración por defecto
     let estadoActual = 'valido'; // 'valido' o 'vencido'
     let fechaActual = '09/12/2026';
 
@@ -66,10 +58,6 @@
             elStatusIcon.alt = 'Certificado Vencido';
             elStatusText.innerHTML = `El certificado est&aacute; vencido desde el ${fechaActual}.`;
         }
-
-        if (inputFecha) {
-            inputFecha.value = fechaActual;
-        }
     }
 
     /**
@@ -101,50 +89,6 @@
             // Por defecto: Válido (con fecha 09/12/2026)
             aplicarEstado('valido', '09/12/2026');
         }
-
-        // 4. Configurar eventos de la barra de control interactiva
-        if (btnSetValid) {
-            btnSetValid.addEventListener('click', () => {
-                aplicarEstado('valido', inputFecha ? inputFecha.value : '09/12/2026');
-            });
-        }
-
-        if (btnSetExpired) {
-            btnSetExpired.addEventListener('click', () => {
-                aplicarEstado('vencido', inputFecha ? inputFecha.value : '09/02/2026');
-            });
-        }
-
-        if (inputFecha) {
-            inputFecha.addEventListener('input', () => {
-                aplicarEstado(estadoActual, inputFecha.value);
-            });
-        }
-
-        if (btnCloseDemo && demoToolbar && demoBubble) {
-            btnCloseDemo.addEventListener('click', () => {
-                demoToolbar.style.display = 'none';
-                demoBubble.style.display = 'flex';
-            });
-
-            demoBubble.addEventListener('click', () => {
-                demoToolbar.style.display = 'flex';
-                demoBubble.style.display = 'none';
-            });
-        }
-
-        // Atajo de teclado: Tecla 'H' para ocultar/mostrar la barra demo
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'h' || e.key === 'H') {
-                if (demoToolbar && demoToolbar.style.display !== 'none') {
-                    demoToolbar.style.display = 'none';
-                    if (demoBubble) demoBubble.style.display = 'flex';
-                } else if (demoToolbar) {
-                    demoToolbar.style.display = 'flex';
-                    if (demoBubble) demoBubble.style.display = 'none';
-                }
-            }
-        });
     }
 
     // Ejecutar cuando el DOM esté listo
